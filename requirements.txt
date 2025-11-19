@@ -10,3 +10,4 @@ google-auth-oauthlib
 typer
 fastapi
 fastmcp
+pylint
