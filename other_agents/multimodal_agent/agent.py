@@ -14,6 +14,15 @@ from google.adk.tools.tool_context import ToolContext
 from google.genai import types
 from google.genai.types import HttpOptions
 
+import os
+from dotenv import load_dotenv
+
+# Load environment variables
+load_dotenv(override=True)
+GEMINI_MODEL=os.getenv("GEMINI_MODEL")
+PROJECT_ID=os.getenv("GOOGLE_CLOUD_PROJECT")
+LOCATION=os.getenv("GOOGLE_CLOUD_LOCATION")
+
 CHANGED_LIVERY_IMAGE_ARTIFACT_NAME = "changed_livery.png"
 
 
@@ -36,7 +45,10 @@ async def swap_airline_livery(tool_context: ToolContext, target_airline: str):
 
     artifact_part = await tool_context.load_artifact(available_files[0])
 
-    client = genai.Client(http_options=HttpOptions(api_version="v1"))
+    client = genai.Client(vertexai=True, 
+            project=PROJECT_ID, 
+            location=LOCATION
+        )
 
     content_parts = [artifact_part, types.Part.from_text(
         text=f"You are a helpful image editor artist. Replace the livery of the given aircraft in the picture with the livery of {target_airline}")
@@ -54,7 +66,7 @@ async def swap_airline_livery(tool_context: ToolContext, target_airline: str):
         ],
     )
     response = client.models.generate_content(
-        model='gemini-2.5-flash-image',
+        model='gemini-2.5-flash-image', #Nano Banana Hardcoded in the tool
         contents=contents,
         config=generate_content_config,
     )
@@ -77,7 +89,7 @@ async def swap_airline_livery(tool_context: ToolContext, target_airline: str):
 
 
 airline_identifier_agent = Agent(
-    model='gemini-2.5-flash',
+    model=GEMINI_MODEL,
     name='airline_identifier_agent',
     description='An agent that identifies airlines in aircraft photos.',
     instruction='You are a specialist in aircraft identification. Given an image artifact, analyze the image and return ONLY the name of the airline.',
@@ -86,7 +98,7 @@ airline_identifier_agent = Agent(
 
 
 airline_hub_researcher_agent = Agent(
-    model='gemini-2.5-flash',
+    model=GEMINI_MODEL,
     name='AirlineHubReseracherAgent',
     description='An agent that looks for an airline\'s hub in Google.',
     instruction=(
@@ -99,7 +111,7 @@ You MUST return ONLY the name of the hub city. Example: "Dallas", "Madrid"."""
 )
 
 airline_competitor_researcher_agent = Agent(
-    model='gemini-2.5-flash',
+    model=GEMINI_MODEL,
     name='AirlineCompetitorReseracherAgent',
     description='An agent that looks for an airline\'s main competitor in Google.',
     instruction=(
@@ -121,7 +133,7 @@ airline_researcher_agent = ParallelAgent(
 )
 
 aircraft_livery_swapper_agent = Agent(
-    model='gemini-2.5-flash',
+    model=GEMINI_MODEL,
     name='AircraftLiverySwapperAgent',
     description='An agent that takes an image of an aircraft and returns a new image with the same aircraft in a different livery.',
     instruction=(
