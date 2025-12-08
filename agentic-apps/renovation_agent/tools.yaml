@@ -1,0 +1,31 @@
+sources:
+  alloydb-orders:
+    kind: "alloydb-postgres"
+    project: "jcatalu-ai-demos"
+    region: "us-central1"
+    cluster: "vector-cluster"
+    instance: "primary"
+    database: "postgres"
+    user: "postgres"
+    password: "myAlloyDBpass0?¿"
+tools:
+  get-order-data:
+    kind: postgres-sql
+    source: alloydb-orders
+    description: Get the status of an order based on the material description.
+    parameters:
+      - name: description
+        type: string
+        description: A description of the material to search for its order status.
+    statement: |
+      select order_status from material_order_status where lower(material_name) like lower($1) LIMIT 1;
+  get-orders-by-supplier-name:
+    kind: postgres-sql
+    source: alloydb-orders
+    description: Get all orders associated with a specific supplier name.
+    parameters:
+      - name: supplier_name
+        type: string
+        description: The name of the supplier to filter orders by.
+    statement: |
+      select * from material_order_status where lower(supplier_name) like lower($1);
