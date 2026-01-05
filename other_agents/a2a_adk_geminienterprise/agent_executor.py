@@ -1,10 +1,7 @@
-import json
-
 from a2a.server.agent_execution import AgentExecutor, RequestContext
 from a2a.server.events import EventQueue
-from a2a.server.tasks import TaskUpdater
+from a2a.utils.errors import ServerError
 from a2a.types import (
-    DataPart,
     Part,
     Task,
     TaskState,
@@ -16,21 +13,32 @@ from a2a.utils import (
     new_agent_text_message,
     new_task,
 )
-from a2a.utils.errors import ServerError
-from google.adk.artifacts.in_memory_artifact_service import InMemoryArtifactService
+from a2a.server.tasks import TaskUpdater
+
 from google.adk.memory.in_memory_memory_service import InMemoryMemoryService
-from google.adk.runners import Runner
+from google.adk.artifacts.in_memory_artifact_service import InMemoryArtifactService
 from google.adk.sessions.in_memory_session_service import InMemorySessionService
 from google.genai.types import Content
 
+from google.adk.agents.base_agent import BaseAgent
+from google.adk.runners import Runner
 from gemini_agent import GeminiAgent
 
 
-class ReimbursementAgentExecutor(AgentExecutor):
-    """Reimbursement AgentExecutor."""
+class AdkAgentToA2AExecutor(AgentExecutor):
+    _runner: Runner
 
-    def __init__(self):
-        self.agent = GeminiAgent()
+    def __init__(
+        self,
+    ):
+        self._agent = GeminiAgent()
+        self._runner = Runner(
+            app_name=self._agent.name,
+            agent=self._agent,
+            session_service=InMemorySessionService(),
+            artifact_service=InMemoryArtifactService(),
+            memory_service=InMemoryMemoryService(),
+        )
         self._user_id = "remote_agent"
 
     async def execute(
@@ -44,20 +52,21 @@ class ReimbursementAgentExecutor(AgentExecutor):
         if not task:
             if not context.message:
                 return
+
             task = new_task(context.message)
             await event_queue.enqueue_event(task)
 
         updater = TaskUpdater(event_queue, task.id, task.context_id)
         session_id = task.context_id
 
-        session = await self.agent._runner.session_service.get_session(
-            app_name=self.agent.name,
+        session = await self._runner.session_service.get_session(
+            app_name=self._agent.name,
             user_id=self._user_id,
             session_id=session_id,
         )
         if session is None:
-            session = await self.agent._runner.session_service.create_session(
-                app_name=self.agent.name,
+            session = await self._runner.session_service.create_session(
+                app_name=self._agent.name,
                 user_id=self._user_id,
                 state={},
                 session_id=session_id,
@@ -65,62 +74,26 @@ class ReimbursementAgentExecutor(AgentExecutor):
 
         content = Content(role="user", parts=[{"text": query}])
 
+        full_response_text = ""
+
+        # Working status
         await updater.start_work()
 
         try:
-           print(f"Starting to stream response for task {task.id}")
-           async for item in self.agent.stream(query, task.context_id):
-            print(f"Streamed item: {item}")
-            is_task_complete = item['is_task_complete']
-            artifacts = None
-            if not is_task_complete:
-                await updater.update_status(
-                    TaskState.working,
-                    new_agent_text_message(
-                        item['updates'], task.context_id, task.id
-                    ),
-                )
-                continue
-            # If the response is a dictionary, assume its a 
-            if isinstance(item['content'], dict):
-                # Verify it is a valid form
-                if (
-                    'response' in item['content']
-                    and 'result' in item['content']['response']
-                ):
-                    data = json.loads(item['content']['response']['result'])
-                    print(f"Form data - INSTANCE IS DICTIONARY TO json: {data}")
-                    await updater.update_status(
-                        TaskState.input_required,
-                        new_agent_parts_message(
-                            [Part(root=DataPart(data=data))],
-                            task.context_id,
-                            task.id,
-                        ),
-                        final=True,
-                    )
-                    continue
-                await updater.update_status(
-                    TaskState.failed,
-                    new_agent_text_message(
-                        'Reaching an unexpected state',
-                        task.context_id,
-                        task.id,
-                    ),
-                    final=True,
-                )
-                break
-            # Emit the appropriate events
-            await updater.add_artifact(
-                [Part(root=TextPart(text=item['content']))], name='form'
-            )
-            print(f"Final response content root: {item['content']}")
-            await updater.complete()
-            break  
+            async for event in self._runner.run_async(
+                user_id=self._user_id, session_id=session.id, new_message=content
+            ):
+                if event.is_final_response():
+                    if event.content and event.content.parts and event.content.parts[0].text:
+                        await updater.add_artifact(
+                            [Part(root=TextPart(text=event.content.parts[0].text))], name='response'
+                        )
+                        await updater.complete()
         except Exception as e:
             await updater.failed(message=new_agent_text_message(f"Task failed with error: {e}"))
 
+
     async def cancel(
-        self, request: RequestContext, event_queue: EventQueue
-    ) -> Task | None:
+        self, context: RequestContext, event_queue: EventQueue
+    ) -> None:
         raise ServerError(error=UnsupportedOperationError())
