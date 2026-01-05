@@ -1,0 +1,8 @@
+a2a-sdk
+google-generativeai
+uvicorn
+python-dotenv
+gunicorn
+google-cloud-aiplatform
+google-adk
+google-genai
