@@ -21,8 +21,8 @@ if [ "$MODEL_NAME" != "gemini-2.5-pro" ] && [ "$MODEL_NAME" != "gemini-2.5-flash
 fi
 
 # The region to deploy to
-REGION="us-central1"
-#REGION="europe-southwest1"
+#REGION="us-central1"
+REGION="europe-southwest1"
 
 # The memory to allocate to the service
 MEMORY="1Gi"
