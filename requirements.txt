@@ -1,5 +1,5 @@
 google-cloud-aiplatform[agent_engines,adk]==1.126.1
-google-adk[eval, a2a]==1.18.0
+google-adk[eval, a2a]==1.21.0
 google-cloud-modelarmor==0.3.0
 cloudpickle
 google-genai
