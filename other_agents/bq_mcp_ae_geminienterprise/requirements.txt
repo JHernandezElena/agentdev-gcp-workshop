@@ -1,0 +1,11 @@
+a2a-sdk
+google-generativeai
+uvicorn
+python-dotenv
+asyncclick
+gunicorn
+google-cloud-aiplatform
+google-adk>=1.17.0
+toolbox_core
+cloudpickle==3.1.2
+pydantic==2.12.4
