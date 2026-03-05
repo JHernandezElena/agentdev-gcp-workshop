@@ -1,3 +1,7 @@
 .venv
 **/__pycache__/
 **/.env
+**/.adk/*
+**/.DS_Store
+a2ui-ai-agent/
+

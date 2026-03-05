@@ -1,0 +1,9 @@
+GOOGLE_GENAI_USE_VERTEXAI=1
+GOOGLE_CLOUD_PROJECT=your_project
+GOOGLE_CLOUD_LOCATION=your_region
+GEMINI_MODEL=gemini-live-2.5-flash
+GEMINI_LIVE_MODEL=gemini-live-2.5-flash-native-audio
+
+DATASTORE_PROJECT_ID=your_project
+DATASTORE_ID=your_datastore
+DATASTORE_LOCATION=your_region

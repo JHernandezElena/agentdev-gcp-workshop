@@ -19,7 +19,7 @@ BIGQUERY_MCP_URL = "https://bigquery.googleapis.com/mcp"
 
 def maps_mcp_toolset():
     load_dotenv()
-    maps_api_key = os.getenv('API_KEY', 'no_api_found')
+    maps_api_key = os.getenv('MAPS_API_KEY', 'no_api_found')
     
     tools= MCPToolset(
     connection_params=StreamableHTTPConnectionParams(
