@@ -140,7 +140,7 @@ bq_bus_stop_agent = Agent(
     #    thinking_config=ThinkingConfig(include_thoughts=True)),
     tools=[        
         # Custom tool defined in the agent
-        get_latest_bus_stop_images #,
+        get_latest_bus_stop_images,
         # A set of tools provided by a remote MCP server
         mcp_toolset
     ],
