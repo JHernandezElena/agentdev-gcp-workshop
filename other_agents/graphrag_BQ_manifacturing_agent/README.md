@@ -24,9 +24,15 @@ To set up this agent, once you have access to the Preview:
 2. Edit the .env file with your maps api key and your BQ dataset and graphinformation.
 3. Check the logic in `agent.py` to see how the prompt is built to use NL2GraphQL logic!
 4. Run `adk web` to test the agent locally.
-5. (Optional) Run `python deploy_ae.py` to deploy the agent to Agent Engine.
 
----
+## (Optional) Deploy to Agent Engine
+5.  Run `python deploy_ae.py` to deploy the agent to Agent Engine.
+6.  Once deployed, you can access the agent in the Agent Engine UI
+7. You can also expose it to Gemini Enterprise.
+
+
+-----
+----
 # Demo Script
 
 This script provides a structured walkthrough for demonstrating the live capabilities of the Google ADK Knowledge Graph Agent to customers. It highlights the agent's ability to seamlessly translate natural language into complex **BigQuery Property Graph** (`GQL`) queries and utilize the **Google Maps MCP Tool** for geographic enrichment.
@@ -34,7 +40,7 @@ This script provides a structured walkthrough for demonstrating the live capabil
 
 ## 🏗️ 1. Setup & Initialization
 
-Run `adk web` to demonstrate the agent via a graphical browser interface.*
+Run `adk web` to demonstrate the agent via a local graphical browser interface or use the deployed agent in **Agent Engine** or in **Gemini Enterprise**.
 
 
 ## 🎯 2. The Demonstration Flow
@@ -46,7 +52,7 @@ Run `adk web` to demonstrate the agent via a graphical browser interface.*
 
 *“Now that we know which customers are affected by the fiberglass, let's see where they are geographically so we can coordinate a recall or service route.”*
 
-**Type into the Chat:**
+**Prompts to use:**
 
 This script showcases the agent's ability to use tools and reason over the data even in Spanish. It is able to search by "fiberglass":
 > Encuentra todos los clientes que hayan comprado productos que contengan fibra de vidrio
@@ -62,8 +68,8 @@ This script showcases the agent's ability to use tools and reason over the data 
 
 
 ---
-
+---
 ## 💡 Key Takeaways for Customers
 1. **No Data Movement:** The Graph operations are executed *directly* inside BigQuery. 
-2. **Framework Extensibility:** The ADK architecture natively strings together Database tools (`BigQueryToolset`) with external context protocols (`MCPToolset` / Maps) seamlessly.
+2. **Framework Extensibility:** The ADK architecture natively strings together Database tools (`BigQueryToolset`) with external context protocols (`MCPToolset` / Maps) seamlessly. It also exposes realtime all metrics into Bigquery using the (` ADK BigQuery Analytics Plugin`)
 3. **Advanced Modeling:** The application utilizes the bleeding-edge `gemini-3-flash-preview` core logic handling complex schema mapping out-of-the-box.
