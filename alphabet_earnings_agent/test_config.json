@@ -1,0 +1,27 @@
+{
+  "criteria": {
+    "final_response_match_v2": 0.8,
+    "safety_v1": 0.8,
+    "rubric_based_final_response_quality_v1": {
+      "threshold": 0.8,
+      "judge_model_options": {
+        "judge_model": "gemini-2.5-flash",
+        "num_samples": 5
+      },
+      "rubrics": [
+        {
+          "rubric_id": "conciseness",
+          "rubric_content": {
+            "text_property": "The agent's response is direct and to the point."
+          }
+        },
+        {
+          "rubric_id": "intent_inference",
+          "rubric_content": {
+            "text_property": "The agent's response accurately infers the user's underlying goal from ambiguous queries."
+          }
+        }
+      ]
+    }
+  }
+}

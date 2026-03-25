@@ -1,0 +1,111 @@
+{
+  "eval_set_id": "evalset",
+  "name": "evalset",
+  "eval_cases": [
+    {
+      "eval_id": "revenue cloud and youtube 2021",
+      "conversation": [
+        {
+          "invocation_id": "e-27f75ee9-f483-4472-9a37-606806707485",
+          "user_content": {
+            "parts": [
+              {
+                "text": "what was google clouds revenue in 2021?"
+              }
+            ],
+            "role": "user"
+          },
+          "final_response": {
+            "parts": [
+              {
+                "text": "Google Cloud's revenue in 2021 was $19.206 billion. This is calculated by summing the quarterly revenues: $4.047 billion in Q1, $4.628 billion in Q2, $4.990 billion in Q3, and $5.541 billion in Q4."
+              }
+            ],
+            "role": "model"
+          },
+          "intermediate_data": {},
+          "creation_timestamp": 1774456141.592312
+        },
+        {
+          "invocation_id": "e-238095fc-fc2a-42a7-b76d-1358cdfd1d9d",
+          "user_content": {
+            "parts": [
+              {
+                "text": "and youtube?"
+              }
+            ],
+            "role": "user"
+          },
+          "final_response": {
+            "parts": [
+              {
+                "text": "YouTube's advertising revenue in 2021 was $28.845 billion.\n\nQuarterly breakdown for YouTube ads revenue in 2021:\n*   Q1 2021: $6.005 billion\n*   Q2 2021: $7.002 billion\n*   Q3 2021: $7.205 billion\n*   Q4 2021: $8.633 billion"
+              }
+            ],
+            "role": "model"
+          },
+          "intermediate_data": {},
+          "creation_timestamp": 1774456164.099278
+        }
+      ],
+      "session_input": {
+        "app_name": "alphabet_earnings_agent",
+        "user_id": "user"
+      },
+      "creation_timestamp": 1774456323.4529011
+    },
+    {
+      "eval_id": "Sustainability policy",
+      "conversation": [
+        {
+          "invocation_id": "e-1c593e2f-d075-4651-8625-e4ba556c0a7a",
+          "user_content": {
+            "parts": [
+              {
+                "text": "¿Cuál es la política de sostenibilidad de Alphabet?"
+              }
+            ],
+            "role": "user"
+          },
+          "final_response": {
+            "parts": [
+              {
+                "text": "Alphabet considera la sostenibilidad como un valor fundamental y la integra en todas sus operaciones, desde el diseño de centros de datos eficientes hasta la creación de dispositivos y servicios más sostenibles. La empresa se ha comprometido con la sostenibilidad y la lucha contra el cambio climático desde la fundación de Google hace más de 20 años.\n\nLos pilares clave de la estrategia de sostenibilidad de Alphabet son:\n*   **Acelerar la transición hacia una energía libre de carbono y una economía circular**: La empresa ha sido neutra en carbono desde 2007 y es el mayor comprador corporativo de energía renovable del mundo. Desde 2017, ha igualado el 100% de su consumo anual de electricidad con energía renovable durante cinco años consecutivos. Alphabet lanzó en 2020 su tercera década de acción climática, con ambiciosos objetivos para 2030, que incluyen lograr cero emisiones netas en todas sus operaciones y cadena de valor, operar con energía libre de carbono las 24 horas del día, los 7 días de la semana, los 365 días del año, permitir 5 gigavatios de nueva energía libre de carbono a través de inversiones y ayudar a más de 500 ciudades y gobiernos locales a reducir un total de 1 gigatonelada de emisiones de carbono anualmente. También buscan maximizar la reutilización de recursos finitos en sus operaciones, productos y cadenas de suministro.\n*   **Empoderar a todos con tecnología**: Alphabet busca ayudar a las personas a tomar decisiones más sostenibles a través de su tecnología. Esto incluye características como rutas ecológicas en Google Maps, opciones para reservar vuelos o comprar electrodomésticos con menor huella de carbono, y proporcionar información de fuentes autorizadas sobre el cambio climático en Google Search.\n*   **Beneficiar a las personas y los lugares donde opera**: La compañía tiene como objetivo reponer más agua de la que consume para 2030 y apoyar la seguridad hídrica en las comunidades donde opera, enfocándose en la gestión de recursos hídricos en oficinas y centros de datos, la reposición de agua y la mejora de la salud de las cuencas, y el intercambio de tecnología para predecir y prevenir el estrés hídrico.\n\nAlphabet también ha emitido bonos de sostenibilidad por un valor de 5.750 millones de dólares en 2020 para financiar proyectos ambiental y socialmente responsables en áreas como eficiencia energética, energía limpia, edificios verdes, transporte limpio, economía circular, vivienda asequible, equidad racial y apoyo a pequeñas empresas y respuesta a la crisis de COVID-19.\n\nLa empresa también destaca su compromiso con la diversidad, la equidad y la inclusión, y con el crecimiento de una fuerza laboral que sea representativa de los usuarios a los que sirven."
+              }
+            ],
+            "role": "model"
+          },
+          "intermediate_data": {},
+          "creation_timestamp": 1774456482.080131
+        },
+        {
+          "invocation_id": "e-4bd5268b-5878-48d8-86a2-32bdf4bb9f40",
+          "user_content": {
+            "parts": [
+              {
+                "text": "Como se compromete la empresa con la equidad e inclusion?"
+              }
+            ],
+            "role": "user"
+          },
+          "final_response": {
+            "parts": [
+              {
+                "text": "Alphabet está comprometida a hacer de la diversidad, la equidad y la inclusión una parte integral de todas sus operaciones, con el objetivo de construir una fuerza laboral que refleje la diversidad de los usuarios a los que sirve. La empresa busca fomentar un sentido de pertenencia para todos en el trabajo, en sus productos y en la sociedad en general.\n\nLos compromisos y acciones clave de Alphabet en esta área incluyen:\n*   **Fuerza laboral diversa e inclusiva**: Alphabet publica un Informe Anual de Diversidad (DAR, por sus siglas en inglés) que destaca su progreso. En 2021, la empresa logró su mejor año de contratación de mujeres a nivel global y sus mayores avances en la representación de Googlers de origen afroamericano y latino en los Estados Unidos. Aunque se han logrado avances, reconocen que el trabajo para construir una fuerza laboral que refleje la diversidad de la sociedad está lejos de terminar.\n*   **Apoyo a los empleados**: Se esfuerzan por mejorar la contratación y retención de empleados de grupos subrepresentados. Han implementado un nuevo programa de incorporación diseñado para fomentar un sentido de pertenencia entre los empleados subrepresentados, mostrando resultados positivos. También tienen el objetivo de mejorar la representación de grupos subrepresentados en puestos de liderazgo en un 30% para 2025 y duplicar el número de Googlers afroamericanos en todos los demás niveles.\n*   **Colaboración con proveedores diversos**: La empresa se ha fijado la meta de aumentar su impacto en la diversidad de proveedores, con un objetivo de gasto de 2.500 millones de dólares con proveedores diversos, superándolo al alcanzar los 2.800 millones de dólares en 2022. Este programa se ha expandido para incluir a proveedores de grupos históricamente subrepresentados en todo el mundo.\n*   **Productos inclusivos**: Alphabet se dedica a construir productos que sean verdaderamente útiles para todos, incorporando voces subrepresentadas durante el proceso de desarrollo. Ejemplos de esto incluyen:\n    *   Una función en Google Search y Google Maps que ayuda a identificar y apoyar a empresas propiedad de personas afroamericanas.\n    *   El teclado braille TalkBack para personas ciegas o con baja visión.\n    *   Project Euphonia, una iniciativa de investigación de IA de Google para hacer que el reconocimiento de voz sea más accesible para personas con habla atípica.\n    *   La implementación de una cámara más inclusiva en los Pixel 6 y Pixel 6 Pro.\n*   **Ampliación del acceso a oportunidades**: Para promover la equidad y la inclusión más allá de Google, la empresa ha realizado compromisos para ampliar el acceso a la tecnología, la educación y el capital. Esto incluye el apoyo a las universidades y colegios históricamente afroamericanos (HBCU) y la expansión del programa Grow with Google Career Readiness Program. Además, los fondos Black Founders Fund y Latino Founders Fund han ayudado a fundadores con alto potencial a hacer crecer sus negocios."
+              }
+            ],
+            "role": "model"
+          },
+          "intermediate_data": {},
+          "creation_timestamp": 1774456538.18181
+        }
+      ],
+      "session_input": {
+        "app_name": "alphabet_earnings_agent",
+        "user_id": "user"
+      },
+      "creation_timestamp": 1774456590.904118
+    }
+  ],
+  "creation_timestamp": 1774456244.324499
+}
